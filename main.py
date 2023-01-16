@@ -12,7 +12,9 @@ for index, row in df.iterrows():
     pdf.set_font(family="Times", style="B", size=30)
     pdf.set_text_color(100, 100, 100)
     pdf.cell(w=0, h=12, txt=row['Topic'], border=0, align="C")
-    pdf.line(10, 22, 200, 22)
+    # for multiple lines with 10mm gap
+    for i in range(22, 283, 10):
+        pdf.line(10, i, 200, i)
 
     # for footer
     pdf.ln(270)
@@ -21,6 +23,9 @@ for index, row in df.iterrows():
     pdf.cell(w=0, h=18, txt=row['Topic'], align="R")
     for i in range(row['Pages'] - 1):
         pdf.add_page()
+        # for multiple lines with 10mm gap
+        for j in range(22, 283, 10):
+            pdf.line(10, j, 200, j)
         pdf.ln(270)
         pdf.set_font(family="Times", style="I", size=10)
         pdf.set_text_color(180, 180, 180)
